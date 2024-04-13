@@ -76,8 +76,20 @@ class MplResults(Page):
     pass
 
 
-class PosteriorBeliefs(Page):
+class PosteriorBeliefs1(Page):
     pass
+
+
+# class PosteriorBeliefs2(Page):
+#     pass
+#
+#
+# class PosteriorBeliefs3(Page):
+#     pass
+#
+#
+# class PosteriorBeliefs4(Page):
+#     pass
 
 page_sequence = [
     WP1,
@@ -85,5 +97,5 @@ page_sequence = [
     MatchingResultsLosers,
     Mpl,
     MplResults,
-    PosteriorBeliefs,
+    PosteriorBeliefs1,
 ]
