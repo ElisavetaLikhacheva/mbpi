@@ -58,14 +58,14 @@ class MatchingResultsWinners(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        player.winner_role == 'Winner'
+        return player.winner_role == 1
 
 
-class MatchingResultsLoser(Page):
+class MatchingResultsLosers(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        player.winner_role == 'Loser'
+        return player.winner_role == 0
 
 
 class Mpl(Page):
@@ -82,7 +82,7 @@ class PosteriorBeliefs(Page):
 page_sequence = [
     WP1,
     MatchingResultsWinners,
-    MatchingResultsLoser,
+    MatchingResultsLosers,
     Mpl,
     MplResults,
     PosteriorBeliefs,
