@@ -48,7 +48,10 @@ class WP1(WaitPage):
             elif p.participant.score < p.get_others_in_group()[0].participant.score:
                 p.winner_role = 0
             else:
-                p.winner_role = 0
+                if p.id_in_group == 1:
+                    p.winner_role = 1
+                else:
+                    p.winner_role = 0
 
 
 class MatchingResultsWinners(Page):

@@ -91,7 +91,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    Score = models.IntegerField()
+    score = models.IntegerField()
 
     iteration = models.IntegerField(initial=0)
     num_trials = models.IntegerField(initial=0)
