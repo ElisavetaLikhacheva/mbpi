@@ -23,7 +23,6 @@ SESSION_CONFIGS = [
     #     # use_browser_bots=True
     # ),
 ]
-
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
@@ -34,7 +33,10 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 PARTICIPANT_FIELDS = ['is_dropout',
-                      'score']
+                      'score',
+                      'payoff1',
+                      'message']
+
 SESSION_FIELDS = ['params']
 
 # ISO-639 code

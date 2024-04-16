@@ -7,19 +7,6 @@
 <div class="card">
     <div class="card-body">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <label>Напоминаем, при назначении задания была вероятность 50%, что Вам достанется сложное задание.</label>
-                {{form.prior_prob_hard.label}}
-                <div class="slidecontainer">
-                    <input type="range" name="prior_prob_hard" class="slider" min="0" max="100"
-                           oninput="updateDescription(this)" >
-                        <div class="sliderticks">
-                            <p>0</p>
-                            <p>100</p>
-                        </div>
-                </div>
-                <p id="prior_prob_hard"></p>
-            </li>
 
             <li class="list-group-item">
                 <label></label>
@@ -34,21 +21,6 @@
                 </div>
                 <p id="prior_ppl_lower"></p>
             </li>
-
-            <li class="list-group-item">
-                <label></label>
-                {{form.prior_deserve_bonus.label}}
-
-                <div class="slidecontainer">
-                    <input type="range" name="prior_deserve_bonus" class="slider" min="0" max="100"
-                           oninput="updateDescription3(this)" >
-                        <div class="sliderticks">
-                            <p>0</p>
-                            <p>100</p>
-                        </div>
-                </div>
-                <p id="prior_deserve_bonus"></p>
-            </li>
         </ul>
     </div>
 </div>
@@ -60,22 +32,10 @@
 
 
 <script>
-    let description = document.getElementById('prior_prob_hard');
-    function updateDescription(input) {
-        let prior_prob_hard = parseInt(input.value);
-        description.innerText = `Я считаю, что с вероятностью ${prior_prob_hard}% мною были выполнены сложные задания.`
-    }
-
     let description2 = document.getElementById('prior_ppl_lower');
     function updateDescription2(input) {
         let prior_ppl_lower = parseInt(input.value);
         description2.innerText = `Я считаю, что ${prior_ppl_lower}% людей выполнили задание хуже, чем я.`
-    }
-
-        let description3 = document.getElementById('prior_deserve_bonus');
-    function updateDescription3(input) {
-        let prior_deserve_bonus = parseInt(input.value);
-        description3.innerText = `Я считаю, что на ${prior_deserve_bonus}% я заслуживаю бонус.`
     }
 </script>
 

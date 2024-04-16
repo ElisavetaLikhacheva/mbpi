@@ -309,26 +309,38 @@ class Game(Page):
 
         participant = player.participant
         participant.score = player.num_correct
-        # participant.num_financial_conditions = player.financial_conditions
 
 
 class Results(Page):
     pass
 
 
-class PriorBeliefs(Page):
+class PriorBeliefs1(Page):
     form_model = 'player'
     form_fields = [
-        'prior_prob_hard',
-        'prior_ppl_lower',
-        'prior_deserve_bonus'
+        'prior_prob_hard'
     ]
 
+
+class PriorBeliefs2(Page):
+    form_model = 'player'
+    form_fields = [
+        'prior_ppl_lower'
+    ]
+
+
+class PriorBeliefs3(Page):
+    form_model = 'player'
+    form_fields = [
+        'prior_deserve_bonus'
+    ]
 
 
 page_sequence = [#GeneralInstruction,
                  # TaskInstruction,
                  Game,
                  Results,
-                 PriorBeliefs,
+                 # PriorBeliefs1,
+                 # PriorBeliefs2,
+                 # PriorBeliefs3,
 ]

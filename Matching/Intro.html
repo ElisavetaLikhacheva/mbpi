@@ -1,0 +1,35 @@
+
+{{ block title }}
+    Part 1 - Instructions
+{{ endblock }}
+
+{{ block content }}
+<div>
+    <p>
+        On the following screen you will see 20 scenarios.
+        In each scenario you can choose between a lottery and a safe payment.
+        The lottery is as follows:
+        There is a 50% chance to get 10€, and a 50% chance to get nothing.
+
+        The safe payment increases from scenario to scenario.
+        Its value is 0 in the first scenario, 0.5€ in the second, 1€ in the third, and so on.
+        In the last scenario, the value is 10€.
+    </p>
+
+    <p>
+        The idea of this experiment is to find the point at which you are willing to switch between the lottery and the
+        safe payment.
+        Following this idea, the experiment comes with a feature that, once you select a safe payment or a lottery,
+        automatically checks all the remaining safe payments/lotteries for you.
+    </p>
+
+    <p>Mind that you can revise your decision for as long as you want before submitting it.</p>
+
+    <p>Please, indicate the scenario in which you switch from the lottery to the safe payment.</p>
+
+</div>
+
+<div style="width:100px; margin:0 auto;">
+    {{ next_button }}
+</div>
+{{ endblock }}
