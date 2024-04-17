@@ -1,16 +1,15 @@
 {{ block title }}
-    Этап 1
+    Этап 2
 {{ endblock }}
 
 {{ block content }}
-Пожалуйста, ответьте на несколько вопросов, касающихся вашего результата на прошлом этапе.
 
 <div class="card">
-    <div class="card-body">
-        <ul class="list-group list-group-flush">
+        <div class="card-body">
+        <p>
+            Пожалуйста, ответьте на несколько вопросов, касающихся Вашего результата на 1 этапе с выполнением задания.
+        </p>
 
-            <li class="list-group-item">
-                <label></label>
                 {{form.posterior_ppl_lower.label}}
                 <div class="slidecontainer">
                     <input type="range" name="posterior_ppl_lower" class="slider" min="0" max="100"
@@ -21,8 +20,8 @@
                         </div>
                 </div>
                 <p id="posterior_ppl_lower"></p>
-            </li>
-        </ul>
+
+
     </div>
 </div>
 

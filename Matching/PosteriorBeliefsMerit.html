@@ -1,27 +1,25 @@
 {{ block title }}
-    Этап 1
+    Этап 2
 {{ endblock }}
 {{ block content }}
-Пожалуйста, ответьте на несколько вопросов, касающихся вашего результата на прошлом этапе.
 
 <div class="card">
     <div class="card-body">
-        <ul class="list-group list-group-flush">
+        <p>
+            Пожалуйста, ответьте на несколько вопросов, касающихся Вашего результата на 1 этапе с выполнением задания.
+        </p>
 
-            <li class="list-group-item">
-                <label></label>
-                {{form.posterior_merit.label}}
-                <div class="slidecontainer">
-                    <input type="range" name="posterior_merit" class="slider" min="0" max="100"
-                           oninput="updateDescription2(this)" >
-                        <div class="sliderticks">
-                            <p>0</p>
-                            <p>100</p>
-                        </div>
+        {{form.posterior_merit.label}}
+        <div class="slidecontainer">
+            <input type="range" name="posterior_merit" class="slider" min="0" max="100"
+                   oninput="updateDescription2(this)" >
+                <div class="sliderticks">
+                    <p>0</p>
+                    <p>100</p>
                 </div>
-                <p id="posterior_merit"></p>
-            </li>
-        </ul>
+        </div>
+        <p id="posterior_merit"></p>
+
     </div>
 </div>
 
@@ -35,7 +33,8 @@
     let description2 = document.getElementById('posterior_merit');
     function updateDescription2(input) {
         let posterior_merit = parseInt(input.value);
-        description2.innerText = `Я считаю, что ${posterior_merit}% людей выполнили задание хуже, чем я.`
+        let posterior_luck = 100 - posterior_merit;
+        description2.innerText = `Я считаю, что на ${posterior_merit}% результат определяется усилиями и на ${posterior_luck}% удачей.`
     }
 </script>
 

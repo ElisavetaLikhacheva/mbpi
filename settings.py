@@ -33,8 +33,10 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 PARTICIPANT_FIELDS = ['is_dropout',
+                      'hard_treatment',
                       'score',
-                      'payoff1',
+                      'mpl_info',
+                      'mpl_payoff',
                       'message']
 
 SESSION_FIELDS = ['params']

@@ -4,10 +4,21 @@
 
 {{ block content }}
 
-<p>
-    Вы попробовали решить {{ player.num_trials }} заданий, successfully solved {{ player.num_correct }},
-    and failed {{ player.num_failed }}.
-</p>
+<div class="card">
+    <div class="card-body">
+        <p>
+            В прошлом раунде Вы достигли следующих результатов.
+        </p>
+<!--        <div class="alert alert-info">-->
+<!--            Попыток решить задание: {{ player.num_trials }}-->
+<!--         </div>-->
+        <div class="alert alert-success">
+            Решено успешно: {{ player.num_correct }}
+       </div>
+    </div>
+</div>
+
+
 
     {{ next_button }}
 {{ endblock }}

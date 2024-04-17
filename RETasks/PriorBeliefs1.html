@@ -10,16 +10,16 @@
 
             <li class="list-group-item">
                 <label></label>
-                {{form.prior_ppl_lower.label}}
+                {{form.prior_prob_hard.label}}
                 <div class="slidecontainer">
-                    <input type="range" name="prior_ppl_lower" class="slider" min="0" max="100"
+                    <input type="range" name="prior_prob_hard" class="slider" min="0" max="100"
                            oninput="updateDescription2(this)" >
                         <div class="sliderticks">
                             <p>0</p>
                             <p>100</p>
                         </div>
                 </div>
-                <p id="prior_ppl_lower"></p>
+                <p id="prior_prob_hard"></p>
             </li>
         </ul>
     </div>
@@ -32,10 +32,10 @@
 
 
 <script>
-    let description2 = document.getElementById('prior_ppl_lower');
+    let description2 = document.getElementById('prior_prob_hard');
     function updateDescription2(input) {
-        let prior_ppl_lower = parseInt(input.value);
-        description2.innerText = `Я считаю, что ${prior_ppl_lower}% людей выполнили задание хуже, чем я.`
+        let prior_prob_hard = parseInt(input.value);
+        description2.innerText = `Я считаю, что с вероятностью ${prior_prob_hard}% мною были выполнены сложные задания.`
     }
 </script>
 

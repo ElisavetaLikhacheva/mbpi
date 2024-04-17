@@ -1,8 +1,17 @@
 {{ block title }}
-    Page title LOSERS
+    Этап 2. Результаты
 {{ endblock }}
 
 {{ block content }}
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-primary">
+            Вы случайным образом были объединены в пару с другим участником.
+            По условиям исследования <b> бонус в размере {{ C.BONUS }} достается другому участнику. </b>
+        </div>
+    </div>
+</div>
+
 
     {{ next_button }}
 {{ endblock }}

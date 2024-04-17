@@ -1,27 +1,25 @@
 {{ block title }}
-    Этап 1
+    Этап 2
 {{ endblock }}
 {{ block content }}
-Пожалуйста, ответьте на несколько вопросов, касающихся вашего результата на прошлом этапе.
 
 <div class="card">
     <div class="card-body">
-        <ul class="list-group list-group-flush">
+        <p>
+            Пожалуйста, ответьте на несколько вопросов, касающихся Вашего результата на 1 этапе с выполнением задания.
+        </p>
 
-            <li class="list-group-item">
-                <label></label>
-                {{form.posterior_deserve_bonus.label}}
-                <div class="slidecontainer">
-                    <input type="range" name="posterior_deserve_bonus" class="slider" min="0" max="100"
-                           oninput="updateDescription2(this)" >
-                        <div class="sliderticks">
-                            <p>0</p>
-                            <p>100</p>
-                        </div>
+        {{form.posterior_deserve_bonus.label}}
+        <div class="slidecontainer">
+            <input type="range" name="posterior_deserve_bonus" class="slider" min="0" max="100"
+                   oninput="updateDescription2(this)" >
+                <div class="sliderticks">
+                    <p>0</p>
+                    <p>100</p>
                 </div>
-                <p id="posterior_deserve_bonus"></p>
-            </li>
-        </ul>
+        </div>
+        <p id="posterior_deserve_bonus"></p>
+
     </div>
 </div>
 
@@ -35,7 +33,7 @@
     let description2 = document.getElementById('posterior_deserve_bonus');
     function updateDescription2(input) {
         let posterior_deserve_bonus = parseInt(input.value);
-        description2.innerText = `Я считаю, что ${posterior_deserve_bonus}% людей выполнили задание хуже, чем я.`
+        description2.innerText = `Я считаю, что я на ${posterior_deserve_bonus}% заслуживаю бонус.`
     }
 </script>
 

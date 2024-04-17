@@ -1,0 +1,125 @@
+{{ block title }}
+Этап 2
+{{ endblock }}
+
+{{ block content }}
+<div class="card">
+    <div class="card-body">
+        <p>
+            На этом этапе у Вас есть возможность узнать информацию о количестве и типе заданий, которые выполнили
+            Вы и человек, с которым Вы были в паре. Для этого Вам необходимо выбрать в каждой строке <b> один из вариантов.</b>
+            После этого случайным образом будет выбрана 1 из 11 строчек, и, в соответствии с Вашим выбором,
+            Вы можете узнать информацию и получить дополнительный бонус.
+        </p>
+
+        <strong>Для каждой строки выберите один из вариантов.</strong>
+
+        <form id="form">
+        <table class="table table-striped">
+            <colgroup>
+                <col width="4%">
+                <col width="44%">
+                <col width="4%">
+                <col width="4%">
+                <col width="44%">
+            </colgroup>
+            <tr>
+                <td><b>№</b></td>
+                <td align="right"><b>Вариант А</b></td>
+                <td></td>
+                <td></td>
+                <td align="left"><b>Вариант Б</b></td>
+            </tr>
+            {{ for key, amounts in both_side_amounts.items() }}
+            {{for amount1, amount2 in amounts}}
+            <tr>
+                <td>{{ key }}</td>
+                <td align="right">
+                    <b>Узнать информацию </b> и получить дополнительно <b>{{ amount1 }}</b>
+                <td align="middle">
+                    <input type="radio"
+                           name="c{{ key }}"
+                           value="left"
+                           required="required">&nbsp;&nbsp;
+                </td>
+                <td align="middle">
+                    <input type="radio"
+                           name="c{{ key }}"
+                           value="right"
+                           required="required">
+                </td>
+                <td align="left">
+                    <b>Не узнавать информацию</b> и получить дополнительно <b>{{ amount2 }} </b>
+            </tr>
+            {{ endfor }} {{ endfor }}
+        </table>
+        </form>
+    </div>
+</div>
+
+<div style="width:100px; margin:0 auto;">
+    <button type="button" class="btn btn-primary" onclick="submitForm()">Next</button>
+</div>
+
+
+{{ endblock }}
+
+
+{{ block scripts }}
+
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const leftButtons = document.querySelectorAll('input[type="radio"][value="left"]');
+        const rightButtons = document.querySelectorAll('input[type="radio"][value="right"]');
+
+        leftButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // Set all left buttons before this to checked
+                for (let i = 0; i <= index; i++) {
+                    leftButtons[i].checked = true;
+                }
+                // Set all right buttons after this to checked
+                for (let i = index + 1; i < rightButtons.length; i++) {
+                    rightButtons[i].checked = true;
+                }
+            });
+        });
+
+        rightButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // Set all left buttons before this to unchecked
+                for (let i = 0; i < index; i++) {
+                    leftButtons[i].checked = true;
+                }
+                // Set all right buttons after this to checked
+                for (let i = index + 1; i < rightButtons.length; i++) {
+                    rightButtons[i].checked = true;
+                }
+            });
+        });
+    });
+
+        function submitForm() { // Accept the event object as a parameter
+        let errorMessage = '';
+        for (let i = 1; i <= 11; i += 1) {
+            if (!document.querySelector(`input[name="c${i}"]:checked`)) {
+                errorMessage += `Please select an option for the radio button group named ${i}. `;
+            }
+        }
+
+        if (errorMessage) {
+            event.preventDefault(); // Prevent form submission if there are errors
+            alert(errorMessage);
+        } else {
+            // If no errors, submit the form
+            let form = document.getElementById('form');
+            form.submit();
+        }
+    }
+
+</script>
+{{ endblock }}
+
+

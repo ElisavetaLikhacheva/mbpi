@@ -1,0 +1,51 @@
+
+{{ block title }}
+    Этап 2. Результаты
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-primary">
+            {{ player.participant.message }}
+        </div>
+
+        {{ if participant.mpl_info == 1 }}
+        <table class="table table-striped">
+            <colgroup>
+                <col width="44%">
+                <col width="4%">
+                <col width="44%">
+            </colgroup>
+            <tr>
+                <td align="right"></td>
+                <td><b>Вы</b></td>
+                <td align="left"><b>Второй участник</b></td>
+            </tr>
+            <tr>
+                <td align="right"> Количество выполненных заданий</td>
+                <td>{{ participant.score }}</td>
+                <td align="left"></td>
+            </tr>
+            <tr>
+                <td align="right"> Сложность заданий </td>
+                <td>{{ participant.hard_treatment }}</td>
+                <td align="left"></td>
+            </tr>
+            <tr>
+                <td align="right"> Бонус на 1 этапе</td>
+                <td>{{ participant.}}</td>
+                <td align="left"></td>
+            </tr>
+        </table>
+        {{ endif }}
+    </div>
+</div>
+    <p>  </p>
+
+<div style="width:100px; margin:0 auto;">
+    {{ next_button }}
+</div>
+
+{{ endblock }}

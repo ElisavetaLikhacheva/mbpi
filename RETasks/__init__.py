@@ -99,6 +99,7 @@ class Player(BasePlayer):
     num_failed = models.IntegerField(initial=0)
 
     hard_treatment = models.IntegerField()
+    ret_payoff = models.IntegerField()
 
     prior_prob_hard = models.IntegerField(min=0, max=100,
                                           label='Как Вы думаете, какова вероятность того, что '
@@ -278,10 +279,10 @@ def play_game(player: Player, message: dict):
 
 
 # PAGES
-# class GeneralInstruction(Page):
-#     pass
-#
-#
+class InstructionGeneral(Page):
+    pass
+
+
 # class TaskInstruction(Page):
 #     pass
 
@@ -309,6 +310,7 @@ class Game(Page):
 
         participant = player.participant
         participant.score = player.num_correct
+        participant.hard_treatment = player.hard_treatment
 
 
 class Results(Page):
@@ -336,11 +338,11 @@ class PriorBeliefs3(Page):
     ]
 
 
-page_sequence = [#GeneralInstruction,
+page_sequence = [InstructionGeneral,
                  # TaskInstruction,
                  Game,
                  Results,
-                 # PriorBeliefs1,
-                 # PriorBeliefs2,
-                 # PriorBeliefs3,
+                 PriorBeliefs1,
+                 PriorBeliefs2,
+                 PriorBeliefs3
 ]
