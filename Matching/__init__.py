@@ -11,7 +11,8 @@ Your app description
 #     loser = group.get_player_by_role('Loser')
 #     winner.payoff = winner.inc_endowment + C.COMMON_SHARE - group.share
 #     recipient.payoff = recipient.inc_endowment + group.share
-
+def other_player(player):
+    return player.get_others_in_group()[0]
 
 class C(BaseConstants):
     NAME_IN_URL = 'mbpi'
@@ -33,6 +34,12 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     winner_role = models.BooleanField()
+
+    ret_payoff = models.CurrencyField()
+    other_ret_payoff = models.CurrencyField()
+    other_score = models.IntegerField()
+    other_hard_treatment = models.IntegerField()
+
     ###
     left_side_amount = models.IntegerField(initial=10)
     c1 = models.StringField()
@@ -77,13 +84,23 @@ class WP1(WaitPage):
         for p in group.get_players():
             if p.participant.score > p.get_others_in_group()[0].participant.score:
                 p.winner_role = 1
+                p.participant.ret_payoff = p.ret_payoff = C.BONUS
             elif p.participant.score < p.get_others_in_group()[0].participant.score:
                 p.winner_role = 0
+                p.participant.ret_payoff = p.ret_payoff = 0
             else:
                 if p.id_in_group == 1:
                     p.winner_role = 1
+                    p.participant.ret_payoff = p.ret_payoff = C.BONUS
                 else:
                     p.winner_role = 0
+                    p.participant.ret_payoff = p.ret_payoff = 0
+
+        for p in group.get_players():
+            p.other_ret_payoff = p.participant.other_ret_payoff = other_player(p).ret_payoff
+            p.other_score = p.participant.other_score = other_player(p).participant.score
+            # p.hard = p.participant.other_score = other_player(p).participant.score
+            p.other_hard_treatment = p.participant.other_hard_treatment = other_player(p).participant.hard_treatment
 
 
 class MatchingResultsWinners(Page):

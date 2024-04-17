@@ -26,17 +26,17 @@
             <tr>
                 <td align="right"> Количество выполненных заданий</td>
                 <td>{{ participant.score }}</td>
-                <td align="left"></td>
+                <td align="left">{{ participant.other_score }}</td>
             </tr>
             <tr>
                 <td align="right"> Сложность заданий </td>
                 <td>{{ participant.hard_treatment }}</td>
-                <td align="left"></td>
+                <td align="left">{{ participant.other_hard_treatment }}</td>
             </tr>
             <tr>
                 <td align="right"> Бонус на 1 этапе</td>
-                <td>{{ participant.}}</td>
-                <td align="left"></td>
+                <td>{{ participant.ret_payoff }}</td>
+                <td align="left">{{ participant.other_ret_payoff }}</td>
             </tr>
         </table>
         {{ endif }}

@@ -32,6 +32,10 @@ def generate_puzzle_fields(hard_treatment):
     return dict(text=text, solution=text)
 
 
+def other_player(player):
+    return player.get_others_in_group()[0]
+
+
 def is_correct(response, puzzle):
     return puzzle.solution.lower() == response.lower()
 
@@ -65,7 +69,7 @@ class C(BaseConstants):
     # players_per_group = None
     # num_rounds = 1
 
-    instructions_template = __name__ + "/instructions.html"
+    # instructions_template = __name__ + "/instructions.html"
 
 
 class Subsession(BaseSubsession):
@@ -75,8 +79,7 @@ class Subsession(BaseSubsession):
 def creating_session(subsession: Subsession):
     session = subsession.session
     defaults = dict(
-        retry_delay=1.0, puzzle_delay=1.0, attempts_per_puzzle=1, max_iterations=None
-    )
+        retry_delay=1.0, puzzle_delay=1.0, attempts_per_puzzle=1, max_iterations=None)
     session.params = {}
     for param in defaults:
         session.params[param] = session.config.get(param, defaults[param])
@@ -91,15 +94,15 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    score = models.IntegerField()
-
     iteration = models.IntegerField(initial=0)
     num_trials = models.IntegerField(initial=0)
     num_correct = models.IntegerField(initial=0)
     num_failed = models.IntegerField(initial=0)
 
     hard_treatment = models.IntegerField()
-    ret_payoff = models.IntegerField()
+    ret_payoff = models.CurrencyField()
+    score = models.IntegerField()
+
 
     prior_prob_hard = models.IntegerField(min=0, max=100,
                                           label='Как Вы думаете, какова вероятность того, что '
@@ -107,8 +110,9 @@ class Player(BasePlayer):
     prior_ppl_lower = models.IntegerField(min=0, max=100,
                                           label='Как Вы думаете, сколько из каждых 100 людей выполнили '
                                                 'задание хуже, чем Вы? ')
+
     prior_deserve_bonus = models.IntegerField(min=0, max=100,
-                                          label='Основываясь на Вашем результате, как Вы думаете, насколько Вы заслуживаете бонус?')
+                                              label='Основываясь на Вашем результате, как Вы думаете, насколько Вы заслуживаете бонус?')
 
 
 class Puzzle(ExtraModel):
@@ -311,6 +315,8 @@ class Game(Page):
         participant = player.participant
         participant.score = player.num_correct
         participant.hard_treatment = player.hard_treatment
+
+
 
 
 class Results(Page):
