@@ -12,11 +12,16 @@
         </div>
 
         {{ if participant.mpl_info == 1 }}
+        <div style="margin-top: 100px;">
+        <h4 align="center">
+            Информация о результатах на 1 этапе Вас и участника, с которым Вы были объединены в пару случайным образом
+        </h4>
+
         <table class="table table-striped">
             <colgroup>
-                <col width="44%">
-                <col width="4%">
-                <col width="44%">
+                <col width="40%">
+                <col width="30%">
+                <col width="30%">
             </colgroup>
             <tr>
                 <td align="right"></td>
@@ -24,28 +29,28 @@
                 <td align="left"><b>Второй участник</b></td>
             </tr>
             <tr>
-                <td align="right"> Количество выполненных заданий</td>
+                <td align="right"> <b>Количество выполненных заданий</b></td>
                 <td>{{ participant.score }}</td>
                 <td align="left">{{ participant.other_score }}</td>
             </tr>
             <tr>
-                <td align="right"> Сложность заданий </td>
-                <td>{{ participant.hard_treatment }}</td>
-                <td align="left">{{ participant.other_hard_treatment }}</td>
+                <td align="right"> <b> Сложность заданий</b> </td>
+                <td>{{ if participant.hard_treatment }} Сложные {{ else }} Легкие {{ endif }}</td>
+                <td align="left">{{ if participant.other_hard_treatment }} Сложные {{ else }} Легкие {{ endif }}</td>
             </tr>
             <tr>
-                <td align="right"> Бонус на 1 этапе</td>
+                <td align="right"> <b> Бонус на 1 этапе </b> </td>
                 <td>{{ participant.ret_payoff }}</td>
                 <td align="left">{{ participant.other_ret_payoff }}</td>
             </tr>
         </table>
+        </div>
         {{ endif }}
     </div>
 </div>
     <p>  </p>
 
-<div style="width:100px; margin:0 auto;">
+
     {{ next_button }}
-</div>
 
 {{ endblock }}

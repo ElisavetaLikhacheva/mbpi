@@ -1,0 +1,264 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+<div class="card">
+    <div class="card-body">
+        <p></p>
+         <p class="p_bold">Ответьте пожалуйста на следующие вопросы:</p>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{formfield 'general_trust'}}</li>
+            <li class="list-group-item">
+                <b>Доверяете ли Вы следующим организациям?</b>
+                <p>
+                    Выберите один из вариантов для каждого утверждения, где 0 — «абсолютно не доверяю»,
+                    а 10 — «абсолютно доверяю», или любое значение между
+                    ними.
+                </p>
+
+                <table class="table">
+                    <tr class="table-primary">
+                        <th></th>
+                        {{for i in range(0, 11) }}
+                        <th>{{i}} </th>
+                        {{endfor}}
+                    </tr>
+
+                    <tr>
+                        <th>{{ form.trust_country.label }}</th>
+                        {{ for choice in form.trust_country }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_political_parties.label }}</th>
+                        {{ for choice in form.trust_political_parties }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_government.label }}</th>
+                        {{ for choice in form.trust_government }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_courts.label }}</th>
+                        {{ for choice in form.trust_courts }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_television.label }}</th>
+                        {{ for choice in form.trust_television }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_mass_media.label }}</th>
+                        {{ for choice in form.trust_mass_media }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+
+                </table>
+            </li>
+
+            <li class="list-group-item">
+                <b>Доверяете ли Вы следующим людям?</b>
+                <p>
+                    Выберите один из вариантов для каждого утверждения, где 0 — «абсолютно не доверяю»,
+                    а 10 — «абсолютно доверяю», или любое значение между
+                    ними.
+                </p>
+
+                <table class="table">
+                    <tr class="table-primary">
+                        <th></th>
+                        {{for i in range(0, 11) }}
+                        <th>{{i}} </th>
+                        {{endfor}}
+                    </tr>
+
+                    <tr>
+                        <th>{{ form.trust_family.label }}</th>
+                        {{ for choice in form.trust_family }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_neighbours.label }}</th>
+                        {{ for choice in form.trust_neighbours }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_acquant.label }}</th>
+                        {{ for choice in form.trust_acquant }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.trust_stranger.label }}</th>
+                        {{ for choice in form.trust_stranger }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                </table>
+            </li>
+
+
+
+
+
+            <li class="list-group-item"> {{form.social_mobility.label}}
+                <table class="table">
+                        <td>Социальные лифты совсем не работают</td>
+                        {{ for choice in form.social_mobility }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{ endfor }}
+                        <td>Социальные лифты хорошо работают</td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="list-group-item"> {{form.politics_interest.label}}
+                <table class="table">
+                        <td>Я совсем не интересуюсь политикой</td>
+                        {{ for choice in form.politics_interest }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{ endfor }}
+                        <td>Я интересуюсь политикой</td>
+                    </tr>
+                </table>
+            </li>
+            <li class="list-group-item">
+                <p>Далее приведены некоторые высказывания, которые могли бы описать Ваши взгляды,
+                где 0 — полное согласие с фразой слева, а 10 — с высказыванием справа.
+                Для каждого утверждения выбирите одно из значений. </p>
+                <table class="table">
+                <tr class="table-primary">
+                    <th></th>
+                    {{for i in range(0, 11) }}
+                    <th>{{i}} </th>
+                    {{endfor}}
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Упорный труд обычно ведет к улучшению жизни</td>
+                    {{ for choice in form.effort_luck }}
+                    <td>{{ choice }} </td>
+                    {{ endfor }}
+                    <td>Упорный труд обычно не приносит успеха, скорее к этому ведут удача и связи</td>
+                </tr>
+                <tr>
+                    <td>Государство должно нести больше ответственности за то, чтобы все люди были обеспечены</td>
+                    {{ for choice in form.responsibility }}
+                    <td>{{ choice }}</td>
+                    {{ endfor }}
+                    <td>Люди сами должны нести больше ответственности за то, чтобы себя обеспечивать</td>
+                </tr>
+               <tr>
+                   <td>Разница в доходах не должна быть очень большой</td>
+                   {{ for choice in form.income_equality }}
+                   <td>{{ choice }}</td>
+                   {{ endfor }}
+                   <td>Различия в доходах необходимы как стимул для индивидуальных усилий</td>
+                </tr>
+               <tr>
+                    <td>Конкуренция - это хорошо</td>
+                    {{ for choice in form.competition }}
+                    <td>{{ choice }}</td>
+                    {{ endfor }}
+                    <td>Конкуренция вредна</td>
+                </tr>
+            </table>
+            </li>
+            <li class="list-group-item">
+                <p>Говоря о политике, люди используют слова «левый» и «правый».
+                Если говорить в целом, куда бы Вы поместили свои взгляды на этой шкале? Где 0 означает,
+                что Вам близки левые взгляды, а 10 — правые. </p>
+                <table class="table">
+                        <td>Левые</td>
+                        {{ for choice in form.left_right }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{ endfor }}
+                        <td>Правые</td>
+                    </tr>
+                </table>
+            </li>
+            <li class="list-group-item">
+                <p>Многие условия хотя и желательны, но не являются принципиально важными для демократии.
+                    На Ваш взгляд, насколько важным условием демократии являются следующие утверждения?
+                    Оцените каждое из утверждение от 0 до 10, где 0 — совершенно неважно, а 10 — принципиально важно.</p>
+                <table class="table">
+            <tr class="table-primary">
+                <th></th>
+                {{for i in range(0, 11) }}
+                <th>{{i}} </th>
+                {{endfor}}
+            </tr>
+
+            <tr>
+                <th>{{ form.democracy_redistribution.label }}</th>
+                {{ for choice in form.democracy_redistribution }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.democracy_elections.label }}</th>
+                {{ for choice in form.democracy_elections }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.democracy_unemployment_allowance.label }}</th>
+                {{ for choice in form.democracy_unemployment_allowance }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.democracy_income_equality.label }}</th>
+                {{ for choice in form.democracy_income_equality }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.democracy_order.label }}</th>
+                {{ for choice in form.democracy_order }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.democracy_gender_equality.label }}</th>
+                {{ for choice in form.democracy_gender_equality }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+        </table>
+            </li>
+            <li class="list-group-item">
+                <p> {{form.important_democracy.label }}</p>
+                <table class="table">
+                        <td>Совсем не важно</td>
+                        {{ for choice in form.important_democracy }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{ endfor }}
+                        <td>Очень важно</td>
+                    </tr>
+                </table>
+            </li>
+
+        </ul>
+    </div>
+</div>
+{{ next_button }}
+
+
+{{ endblock }}
+
+

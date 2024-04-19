@@ -1,0 +1,126 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+<div class="card">
+    <div class="card-body">
+         <p class="p_bold">Ответьте пожалуйста на следующие вопросы:</p>
+        <div class="card-text">Ниже
+            представлены 5 пирамид, показывающих разные типы общества.
+            Пожалуйста, прочитайте описание каждой пирамиды и ответьте на вопросы.</div>
+        <img src="https://www.dropbox.com/s/1lrpihr7am8qjyb/pyramids.png?raw=1" class="card-img-top">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{formfield 'ideal_pyramid'}}</li>
+            <li class="list-group-item">{{formfield 'russian_pyramid'}}</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <p class="p_indent">Следующие вопросы относятся к средним ежемесячным
+            доходам, которые могут включать:
+            заработную плату, включая доходы от самозанятости; пособия и социальные выплаты; доходы от ренты;
+            дивиденды и проценты от депозитов; доходы от интеллектуальной
+            собственности и др.
+        </p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="alert alert-primary">Если выстроить все значения доходов граждан в ряд по возрастанию и
+                    разделить его пополам, то значение, оказавшееся
+                    посередине — это <b>медианный доход</b>.
+                    <p>То есть <b>половина людей</b> получает доход меньше этого значения,
+                        и <b>половина людей — больше</b>.</p>
+                </div>
+                {{formfield 'median_income'}}</li>
+            <li class="list-group-item">{{formfield 'poor_10'}}</li>
+            <li class="list-group-item">{{formfield 'rich_10'}}</li>
+            <li class="list-group-item">
+                <label> Как Вы думаете, какой процент людей в России зарабатывает меньше, чем Вы?
+                    Переместите ползунок, чтобы выбрать значение, которое Вы считаете правильным. </label>
+                <div class="slidecontainer">
+                    <input type="range" name="percent_below" class="slider" min="0" max="100"
+                           oninput="updateDescription(this)" >
+                        <div class="sliderticks">
+                            <p>0</p>
+                            <p>100</p>
+                        </div>
+                </div>
+
+                <p id="percent_below"></p>
+
+            </li>
+        </ul>
+    </div>
+</div>
+{{ next_button }}
+<script>
+    let description = document.getElementById('percent_below');
+    function updateDescription(input) {
+        let percent_below = parseInt(input.value);
+        description.innerText = `Я считаю, что ${percent_below}% людей в России зарабатывают меньше, чем я.`
+    }
+</script>
+
+<style>
+    .slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 15px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #0D6EFDFF;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #0D6EFDFF;
+  cursor: pointer;
+}
+.sliderticks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.sliderticks p {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 1px;
+  background: #D3D3D3;
+  height: 10px;
+  line-height: 40px;
+  margin: 0 0 20px 0;
+}
+</style>
+{{ endblock }}

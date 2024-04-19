@@ -1,0 +1,194 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+<div class="card">
+    <div class="card-body">
+        <p class="p_bold"> Ответьте пожалуйста на следующие вопросы. С Вашей
+            точки зрения, Вы...</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+
+                <table class="table">
+                    <tr class="table-primary">
+                        <th></th>
+                        <th>Полностью согласен</th>
+                        <th>Скорее согласен</th>
+                        <th>И да и нет</th>
+                        <th>Скорее не согласен</th>
+                        <th>Полностью не согласен</th>
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_1.label }}</th>
+                        {{ for choice in form.big5_1 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_2.label }}</th>
+                        {{ for choice in form.big5_2 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_3.label }}</th>
+                        {{ for choice in form.big5_3 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_4.label }}</th>
+                        {{ for choice in form.big5_4 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_5.label }}</th>
+                        {{ for choice in form.big5_5 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_6.label }}</th>
+                        {{ for choice in form.big5_6 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_7.label }}</th>
+                        {{ for choice in form.big5_7 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_8.label }}</th>
+                        {{ for choice in form.big5_8 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_9.label }}</th>
+                        {{ for choice in form.big5_9 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                    <tr>
+                        <th>{{ form.big5_10.label }}</th>
+                        {{ for choice in form.big5_10 }}
+                        <td>{{ choice }} </td>
+                        {{ endfor }}
+                    </tr>
+                </table>
+            </li>
+            <li class="list-group-item">
+                <p>В какой степени каждое из действий ниже, на Ваш взгляд,
+                    может быть оправданно? «0» означает, что оно никогда
+                    не может быть оправданно, а «10» - всегда может
+                    быть оправданно. Вы также можете выбрать любую цифру между
+            этими оценками.</p>
+                <table class="table">
+            <tr class="table-primary">
+                <th></th>
+                {{for i in range(0, 11)}}
+                <th>{{i}}</th>
+                {{endfor}}
+            </tr>
+            <tr>
+                <th>{{ form.just_allowance.label }}</th>
+                {{ for choice in form.just_allowance }}
+                <td>{{ choice }} </td>
+                {{endfor}}
+            </tr>
+            <tr>
+                <th>{{ form.just_freeride.label }}</th>
+                {{ for choice in form.just_freeride }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.just_thieving.label }}</th>
+                {{ for choice in form.just_thieving }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.just_tax_evasion.label }}</th>
+                {{ for choice in form.just_tax_evasion }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.just_bribe.label }}</th>
+                {{ for choice in form.just_bribe }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.just_violence.label }}</th>
+                {{ for choice in form.just_violence}}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.just_political_violence.label }}</th>
+                {{ for choice in form.just_political_violence }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+        </table>
+            </li>
+            <li class="list-group-item">
+                <p>
+                    Некоторые люди полагают, что они совершенно свободны в выборе и сами определяют свою жизнь,
+                    другие же считают, что они никак реально не влияют на то, что с ними происходит. Используя эту шкалу,
+                    оцените, пожалуйста, в какой степени, как Вам кажется, Вы влияете на ход своей жизни.
+                </p>
+                <table class="table">
+                    <tr>
+                        <td>Совсем не влияю</td>
+                        {{ for choice in form.freedom_choice }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{endfor}}
+                        <td>Сильно влияю</td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="list-group-item">
+                <p>Принимая во внимание все стороны жизни, насколько Вы удовлетворены своей жизнью в целом в настоящее время?
+                Дайте ответ от 0 до 10, где 0 означает, что «Совершенно не удовлетворен(а)»,
+                а 10 — «Полностью удовлетворен(а)».</p>
+                <table class="table">
+                    <tr>
+                        <td>Совершенно не удовлетворен(а)</td>
+                        {{ for choice in form.life_satisfaction }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{endfor}}
+                        <td>Полностью удовлетворен(а)</td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="list-group-item">
+                <p>Насколько Вы удовлетворены финансовым положением Вашей семьи?
+                Дайте ответ от 0 до 10, где 0 означает, что «Совершенно не удовлетворен(на)»,
+                а 10 — «Полностью удовлетворен(на)».</p>
+                <table class="table">
+                    <tr>
+                        <td>Совершенно не удовлетворен(на)</td>
+                        {{ for choice in form.finance_satisfaction }}
+                        <td>{{ choice }} <p>{{choice.label}}</p></td>
+                        {{endfor}}
+                        <td>Полностью удовлетворен(на)</td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{{ next_button }}
+{{endblock}}

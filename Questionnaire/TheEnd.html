@@ -1,0 +1,18 @@
+{{ block title }}
+    Спасибо за участие!
+{{ endblock }}
+
+{{ block content }}
+<div class="card">
+    <div class="card-body">
+        <p class="card-text"> Ваш код участника: {{player.participant.code}}</p>
+        <p class="card-text"> Ваша фиксированная выплата за анкету:
+            {{participant.session.participation_fee}}</p>
+        <p class="card-text"> Ваш бонус:
+            {{participant.payoff_in_real_world_currency}}</p>
+    </div>
+</div>
+{{formfields}}
+{{ endblock }}
+
+

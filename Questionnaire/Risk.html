@@ -1,0 +1,46 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+<div class="card">
+    <div class="card-body">
+         <p class="p_bold">Ответьте, пожалуйста, на следующие вопросы:</p>
+            <table class="table">
+
+            <p class="card-text p_indent">
+                Отметьте насколько Вы склонны к риску в целом или в определенных областях, таких как
+                здоровье или езда за рулем. Для ответа выберите значение от 0 до 10,
+                где 0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
+            </p>
+
+            <tr class="table-primary">
+                <th></th>
+                {{for i in range(0, 11) }}
+                <th>{{i}} </th>
+                {{endfor}}
+            </tr>
+
+            {{ for field in form }}
+            <tr>
+                <th>{{ field.label }}</th>
+                {{ for option in field }}
+                <td>{{ option }}</td>
+                {{ endfor }}
+            </tr>
+            {{ endfor }}
+        </table>
+    </div>
+</div>
+
+<script>
+    // workaround needed until wtforms #615 is published
+    for (let option of document.querySelectorAll('input[type=radio]')) {
+        option.required = 'required';
+    }
+</script>
+    {{ next_button }}
+{{ endblock }}
+
+

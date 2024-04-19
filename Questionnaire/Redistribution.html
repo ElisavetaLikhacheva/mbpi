@@ -1,0 +1,57 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+
+<div class="card">
+    <div class="card-body">
+      <p class="p_bold">Ответьте пожалуйста на следующие вопросы:</p>
+        <div class="alert alert-primary">
+            <p> <b>Система перераспределения </b>— это механизм, в рамках которого происходит передача доходов
+        и/или богатства с помощью налогообложения, социальных льгот, благотворительности.</p>
+            <p>Одной из целей такой политики является <b>снижение
+                уровня неравенства</b> в обществе,
+            то есть уменьшение <b>разницы в доходах между богатыми и бедными.</b></p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> {{formfield 'redistr_changes'}} </li>
+            <li class="list-group-item">
+                <p>Пожалуйста, выберите один из вариантов для каждого утверждения.</p>
+                <p><b>Как Вы думаете, Вы выигрываете или проигрываете от системы перераспределения?</b></p>
+
+                <table class="table">
+            <tr class="table-primary">
+                <th></th>
+                <th>Выигрываю</th>
+                <th>Не выигрываю и не проигрываю</th>
+                <th>Проигрываю</th>
+            </tr>
+            <tr>
+                <th>{{ form.redistr_benefits_now.label }}</th>
+                {{ for choice in form.redistr_benefits_now }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.redistr_benefits_life.label }}</th>
+                {{ for choice in form.redistr_benefits_life }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+        </table>
+                </li>
+            <li class="list-group-item">{{formfield 'redistr_tax_rate'}}</li>
+
+        </ul>
+
+    </div>
+</div>
+
+{{ next_button }}
+{{ endblock }}
+
+

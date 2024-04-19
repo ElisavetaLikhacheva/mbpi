@@ -1,0 +1,30 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-primary"> <b> Поздравляем, Вы завершили этап
+            2. </b>
+            <p> Его результаты будут известны после заполнения анкеты.
+                Ответьте пожалуйста на следующие вопросы:
+                </p> </div>
+        <ul class="list-group list-group-flush">
+            {{for field in form}}
+            <li class="list-group-item">
+                <p>{{field.label}}</p>
+                <div style="margin-bottom: 20px">{{field}}</div>
+            </li>
+            {{endfor}}
+
+        </ul>
+    </div>
+</div>
+{{ next_button }}
+
+{{ endblock }}
+
+

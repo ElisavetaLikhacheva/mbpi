@@ -1,0 +1,92 @@
+
+h4{
+    font-weight: bold;
+    text-align: center;
+}
+h6{
+    text-align: center;
+    font-weight: bold;
+}
+.p_indent {
+    text-indent: 40px;
+}
+.p_bold{
+    font-weight: bold;
+}
+.text_center{
+    text-align:center;
+}
+.card{
+    margin: 30px auto;
+    }
+.card-header{
+    background-color: #ffe6d5;
+}
+.center{
+    margin: auto;
+}
+td{
+    font-weight: bold;
+    text-align:center;
+}
+th{
+    font-weight: bold;
+    text-align:center;
+}
+.table {
+    margin-top: 30px;
+}
+.list-group-item{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+.custom-popover {
+  --bs-popover-max-width: 200px;
+  --bs-popover-border-color: var(--bs-primary);
+  --bs-popover-header-bg: var(--bs-primary);
+  --bs-popover-header-color: var(--bs-white);
+  --bs-popover-body-padding-x: 1rem;
+  --bs-popover-body-padding-y: .5rem;
+}
+
+
+.table-info{
+    info-rgb: #c1caff;
+}
+.common {
+    margin: 80px auto;
+    text-align: center;
+}
+.bar {
+    border: 3px solid white;
+    padding: 60px 3%;
+    margin-left: auto ;
+    margin-right: auto ;
+    display: inline-block;
+}
+.bar:hover {
+    border: 3px solid black;
+}
+.lower {
+    background-color: #ffcfaa;
+}
+.in {
+    background-color: #4d63ff;
+    text-align: center;
+}
+.higher {
+    background-color: #c1caff;
+}
+
+
+
+
+/*.lower:hover {*/
+/*    background-color: #ffe6d5;*/
+/*}*/
+/*.in:hover {*/
+/*    background-color: #ff7ff4;*/
+/*}*/
+/*.higher:hover {*/
+/*    background-color: #ff6a00;*/
+/*}*/

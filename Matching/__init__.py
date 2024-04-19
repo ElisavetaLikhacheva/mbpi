@@ -14,6 +14,8 @@ Your app description
 def other_player(player):
     return player.get_others_in_group()[0]
 
+
+
 class C(BaseConstants):
     NAME_IN_URL = 'mbpi'
     PLAYERS_PER_GROUP = 2
@@ -85,16 +87,20 @@ class WP1(WaitPage):
             if p.participant.score > p.get_others_in_group()[0].participant.score:
                 p.winner_role = 1
                 p.participant.ret_payoff = p.ret_payoff = C.BONUS
+                p.payoff = C.BONUS
             elif p.participant.score < p.get_others_in_group()[0].participant.score:
                 p.winner_role = 0
-                p.participant.ret_payoff = p.ret_payoff = 0
+                p.participant.ret_payoff = p.ret_payoff = cu(0)
+                p.payoff = cu(0)
             else:
                 if p.id_in_group == 1:
                     p.winner_role = 1
                     p.participant.ret_payoff = p.ret_payoff = C.BONUS
+                    p.payoff = C.BONUS
                 else:
                     p.winner_role = 0
-                    p.participant.ret_payoff = p.ret_payoff = 0
+                    p.participant.ret_payoff = p.ret_payoff = cu(0)
+                    p.payoff = cu(0)
 
         for p in group.get_players():
             p.other_ret_payoff = p.participant.other_ret_payoff = other_player(p).ret_payoff
@@ -136,17 +142,11 @@ class DecideMPL(Page):
     def vars_for_template(player: Player):
         keys = range(1, 12)
         values = [cu(300), cu(200), cu(100), cu(50), cu(10), cu(0), cu(0), cu(0), cu(0), cu(0), cu(0)]
-        right_side_amounts = {keys[i]: values[i] for i in range(len(keys))}
-        left_side_amounts = {keys[i]: values[-1-i] for i in range(len(keys))}
+        # right_side_amounts = {keys[i]: values[i] for i in range(len(keys))}
+        # left_side_amounts = {keys[i]: values[-1-i] for i in range(len(keys))}
         both_side_amounts = {keys[i]: [[values[-1-i], values[i]]] for i in range(len(keys))}
         print(both_side_amounts)
         return {'both_side_amounts': both_side_amounts}
-
-
-    # def vars_for_template(player: Player):
-    #    return dict(right_side_amounts = range(0, 1050, 50))
-
-
 
     def before_next_page(player: Player, timeout_happened):
         participant = player.participant
@@ -170,16 +170,15 @@ class DecideMPL(Page):
         if getattr(player, player.selected_choice) == "right":
             participant.mpl_info = player.mpl_info = 0
             participant.mpl_payoff = values[1-int(player.selected_choice[1:])]
-            print('right', participant.mpl_payoff)
+            player.payoff = player.payoff + participant.mpl_payoff
+            print('right', participant.mpl_payoff, player.payoff)
             participant.message = f"Случайно была выбрана строка {player.selected_choice[1:]}. В ней Вы выбрали не узнавать информацию и получить дополнительно {participant.mpl_payoff}. "
         else:
             participant.mpl_info = player.mpl_info = 1
             participant.mpl_payoff = values[int(player.selected_choice[1:])]
-            print('left', participant.mpl_payoff)
-            # participant.payoff1 = int(selected_choice[1:])
-            # participant.message1 = "The randomly selected choice was the choice between the lottery '50%: 10€, 50%:0€' and the safe option " + selected_choice[1:] + "€. You chose the lottery. The lottery was drawn to be " + selected_choice[1:] + "€, therefore your payoff from this part of the experiment is " + selected_choice[1:] + "€."
+            player.payoff = player.payoff + participant.mpl_payoff
+            print('left', participant.mpl_payoff, player.payoff)
             participant.message = (f"Случайно была выбрана строка {player.selected_choice[1:]}. В ней Вы выбрали узнать информацию и получить дополнительно {participant.mpl_payoff}. ")
-                                    # + participant.payoff1)
 
 
 class ResultMPL(Page):

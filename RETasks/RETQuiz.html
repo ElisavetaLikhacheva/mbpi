@@ -1,0 +1,23 @@
+{{ block title }}
+    Этап 1
+{{ endblock }}
+
+{{ block content }}
+
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+<div class="card">
+        <div class="card-body">
+            <p class="alert alert-primary">
+                Сейчас мы зададим несколько вопросов, основанных на инструкции, которую Вы прочитали на предыдущей
+                странице. <b>Для продолжения участия Вам необходимо ответить правильно на все вопросы </b>.
+            </p>
+        {{formfields}}
+
+    </div>
+</div>
+
+    {{ next_button }}
+{{ endblock }}
+
+

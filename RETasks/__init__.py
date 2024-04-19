@@ -13,7 +13,7 @@ import random
 doc = """
 Your app description
 """
-CHARSET = "АБВГДЕ0123456789"
+CHARSET = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЫЭЮЯ"
 # LENGTH = 3
 TEXT_SIZE = 32
 TEXT_PADDING = TEXT_SIZE
@@ -65,12 +65,6 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
 
-    # name_in_url = "transcription"
-    # players_per_group = None
-    # num_rounds = 1
-
-    # instructions_template = __name__ + "/instructions.html"
-
 
 class Subsession(BaseSubsession):
     pass
@@ -102,6 +96,19 @@ class Player(BasePlayer):
     hard_treatment = models.IntegerField()
     ret_payoff = models.CurrencyField()
     score = models.IntegerField()
+
+    quiz1 = models.IntegerField(label='Сколько минут будет на выполнение задания?')
+    quiz2 = models.BooleanField(label='Будете ли Вы знать в группу со сложными или простыми заданиями Вы попали?')
+    quiz3 = models.IntegerField(label='Как будет выплачен бонус?',
+                                choices=[
+                                    [1, 'Случайным образом'],
+                                    [2, 'После объединения в пару с другим участником случайным образом тому, '
+                                        'кто выполнил больше заданий'],
+                                    [3, 'Только тем, кто попали в группу со сложными заданиями']],
+                                widget=widgets.RadioSelect)
+
+    num_failed_attempts = models.IntegerField(initial=0)
+    failed_too_many = models.BooleanField(initial=False)
 
 
     prior_prob_hard = models.IntegerField(min=0, max=100,
@@ -291,7 +298,7 @@ class InstructionGeneral(Page):
 #     pass
 
 
-class Game(Page):
+class RET(Page):
     timeout_seconds = 10
 
     live_method = play_game
@@ -323,6 +330,28 @@ class Results(Page):
     pass
 
 
+class RETInstruction(Page):
+    pass
+
+
+class RETQuiz(Page):
+    form_model = 'player'
+    form_fields = [
+        'quiz1',
+        'quiz2',
+        'quiz3'
+    ]
+
+    @staticmethod
+    def error_message(player: Player, values):
+        solutions = dict(quiz1=2, quiz2=False, quiz3=2)
+
+        errors = {name: 'Неверный ответ' for name in solutions if values[name] != solutions[name]}
+        if errors:
+            player.num_failed_attempts += 1
+            return errors
+
+
 class PriorBeliefs1(Page):
     form_model = 'player'
     form_fields = [
@@ -345,8 +374,9 @@ class PriorBeliefs3(Page):
 
 
 page_sequence = [InstructionGeneral,
-                 # TaskInstruction,
-                 Game,
+                 RETInstruction,
+                 RETQuiz,
+                 RET,
                  Results,
                  PriorBeliefs1,
                  PriorBeliefs2,

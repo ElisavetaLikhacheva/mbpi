@@ -4,7 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name='all',
         display_name='Base version',
-        app_sequence=['RETasks', 'Matching'],
+        app_sequence=['RETasks', 'Matching', 'Questionnaire'],
         num_demo_participants=4,
         # use_browser_bots=True
     ),
@@ -12,6 +12,13 @@ SESSION_CONFIGS = [
         name='Real_effort_task_only',
         display_name='RETasks',
         app_sequence=['RETasks'],
+        num_demo_participants=4,
+        # use_browser_bots=True
+    ),
+    dict(
+        name='Questionnaire',
+        display_name='Questionnaire',
+        app_sequence=['Questionnaire'],
         num_demo_participants=4,
         # use_browser_bots=True
     ),

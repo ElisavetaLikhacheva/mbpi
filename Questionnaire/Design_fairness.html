@@ -1,0 +1,72 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+<div class="card">
+    <div class="card-body">
+
+        <p class="p_bold">Ответьте пожалуйста на следующие вопросы:</p>
+
+        <div>
+            В ходе предыдущего этапа количество очков, пропорциональное финансовому положению,
+            было распределено следующим образом:
+            <table class="table">
+
+
+            <tr class="table-primary">
+                <th style="width: 70%; text-align:center;"> Финансовое положение </th>
+                <th style="text-align:center;"> Количество очков </th>
+            </tr>
+
+
+            <tr>
+                <td style="text-align:left;"> 1 — Денег не хватает даже на питание </td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"> 2 — На питание денег хватает, но не хватает на покупку одежды и обуви </td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"> 3 — На покупку одежды и обуви денег хватает, но не хватает на покупку бытовой техники (холодильник, телевизор, компьютер)</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"> 4 — На покупку бытовой техники денег хватает, но не хватает на покупку автомобиля </td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"> 5 — На автомобиль денег хватает, но не хватает на покупку недвижимого имущества </td>
+                <td>180</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"> 6 — Материальных затруднений не испытываем, есть возможность приобрести любое движимое и недвижимое имущество</td>
+                <td>250</td>
+            </tr>
+
+            </table>
+        </div>
+
+        <p>{{formfield 'design_fairness'}}</p>
+
+         {{if player.role == C.DICTATOR_ROLE}}
+            <p>{{formfield 'dictator_reasons'}}</p>
+         {{endif}}
+
+
+    </div>
+</div>
+{{ next_button }}
+
+<style>
+    td{
+    font-weight:normal;
+}
+</style>
+
+{{ endblock }}
+
+

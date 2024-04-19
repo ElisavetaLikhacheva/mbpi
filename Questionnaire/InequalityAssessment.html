@@ -1,0 +1,77 @@
+{{ block title }}
+    Этап 3. Анкета
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'global/main.css'}}">
+
+
+<div class="card">
+    <div class="card-body">
+        <p class="p_bold">Ответьте пожалуйста на следующие вопросы:</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> {{formfield 'inequality_problem'}} </li>
+            <li class="list-group-item">{{formfield 'income_inequality_increasing'}}</li>
+            <li class="list-group-item">{{formfield 'income_satisfactory'}}</li>
+            <li class="list-group-item">{{formfield 'income_deserving'}}</li>
+            <li class="list-group-item">{{formfield 'income_comp_parents'}}</li>
+            <li class="list-group-item">{{formfield 'unemployment_100'}}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <p>
+        Пожалуйста, выберите один из вариантов для каждого утверждения.</p>
+        <p>
+        <b>Как Вы думаете, насколько важно для достижения высокого места в распределении доходов…</b>
+        </p>
+
+        <table class="table">
+            <tr class="table-primary">
+                <th></th>
+                <th>Очень важно</th>
+                <th>Довольно важно</th>
+                <th>Не очень важно</th>
+                <th>Совсем неважно</th>
+            </tr>
+            <tr>
+                <th>{{ form.high_position_family.label }}</th>
+                {{ for choice in form.high_position_family }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.high_position_education.label }}</th>
+                {{ for choice in form.high_position_education }}
+                <td>{{ choice }}</td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.high_position_work.label }}</th>
+                {{ for choice in form.high_position_work }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.high_position_networking.label }}</th>
+                {{ for choice in form.high_position_networking }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+            <tr>
+                <th>{{ form.high_position_social_elevators.label }}</th>
+                {{ for choice in form.high_position_social_elevators }}
+                <td>{{ choice }} </td>
+                {{ endfor }}
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+    {{ next_button }}
+{{ endblock }}
+
+
