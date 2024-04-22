@@ -266,19 +266,9 @@ class C(BaseConstants):
 
 
 # FUNCTIONS
-# def set_payoffs(group):
-#     dictator = group.get_player_by_role('A')
-#     recipient = group.get_player_by_role('Б')
-#     dictator.payoff = dictator.inc_endowment + C.COMMON_SHARE - group.share
-#     recipient.payoff = recipient.inc_endowment + group.share
-
 
 def other_player(player):
     return player.get_others_in_group()[0]
-
-
-# def creating_session(subsession):
-#     subsession.group_randomly(fixed_id_in_group=True)
 
 
 def high_position(label):
@@ -301,51 +291,15 @@ def big5_calculation(first, second):
     return 3 + (first - second) / 2
 
 
-# def endowment_ecu(num_financial_conditions):
-#     if num_financial_conditions == 1:
-#         inc_endowment = cu(5)
-#     elif num_financial_conditions == 2:
-#         inc_endowment = cu(15)
-#     elif num_financial_conditions == 3:
-#         inc_endowment = cu(25)
-#     elif num_financial_conditions == 4:
-#         inc_endowment = cu(50)
-#     elif num_financial_conditions == 5:
-#         inc_endowment = cu(180)
-#     else:
-#         inc_endowment = cu(250)
-#     return inc_endowment
-
-
 class Subsession(BaseSubsession):
     # num_groups_created = models.IntegerField(initial=0)
     pass
 
 
 class Group(BaseGroup):
-    # share = models.CurrencyField(min=0, max=C.COMMON_SHARE, label='Сколько очков Вы передадите участнику Б?')
-    # treatment = models.IntegerField()
-    #
-    # check_info = models.BooleanField(label='Вы хотите получить информацию о финансовом положении другого '
-    #                                        'участника?')
-    # avoid_info = models.BooleanField(label='Вы хотите НЕ получать информацию о финансовом положении '
-    #                                        'другого участника?')
     pass
 
 class Player(BasePlayer):
-    # other_player_financial_conditions = models.IntegerField()
-    # inc_endowment = models.CurrencyField()
-
-    # design_fairness = models.StringField(
-    #     label='Как Вы считаете, соответствует ли соотношение очков, которое получили люди с разным финансовом положением, '
-    #           'распределению доходов в России?',
-    #     choices=C.Q_4_YES_NO,
-    #     widget=widgets.RadioSelect
-    # )
-
-    # dictator_reasons = models.StringField(initial='',blank=True,
-    #     label='Чем Вы руководствовались, определяя сумму, которую Вы передали участнику Б?',
-    # )
     year_of_birth = models.IntegerField(
         label='В каком году Вы родились?',
         min=1900,
@@ -807,13 +761,6 @@ class TheEnd(Page):
 
 
 page_sequence = [
-    # WP1,
-    # Detection,
-    # DetectionAvoid,
-    # WP2,
-    # Receiver_main_decision,
-    # MainDictatorDecision,
-    # ResultsWaitPage,
     ### questionnaire
     Demographics,
     InequalityAssessment,
@@ -823,7 +770,6 @@ page_sequence = [
     Big5,
     Risk,
     BackgroundInfo,
-    # Design_fairness,
     ### the end of questionnaire
     TheEnd
 ]

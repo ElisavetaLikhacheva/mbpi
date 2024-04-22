@@ -4,7 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name='all',
         display_name='Base version',
-        app_sequence=['RETasks', 'Matching', 'Questionnaire'],
+        app_sequence=['RETasks', 'Matching', 'Distribution', 'Questionnaire'],
         num_demo_participants=4,
         # use_browser_bots=True
     ),
@@ -36,7 +36,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.01, participation_fee=0.5, doc=""
+    real_world_currency_per_point=1, participation_fee=50, doc=""
 )
 
 PARTICIPANT_FIELDS = ['is_dropout',
@@ -46,6 +46,7 @@ PARTICIPANT_FIELDS = ['is_dropout',
                       'other_score',
                       'ret_payoff',
                       'other_ret_payoff',
+                      'past_group_id',
 
                       'mpl_info',
                       'mpl_payoff',
@@ -73,6 +74,12 @@ SECRET_KEY = '4867905599132'
 # generating session configs for all varieties of features
 import sys
 
+ROOMS = [
+    dict(
+        name='econ_lab',
+        display_name='Experimental Economics Lab'
+    ),
+]
 
 if sys.argv[1] == 'test':
     MAX_ITERATIONS = 5

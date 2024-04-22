@@ -1,0 +1,68 @@
+{% block styles  %}
+    <link href="{% static 'style.css' %}" rel="stylesheet"/>
+{% endblock %}
+{{ block title }}
+    Этап 2. Принятие решения
+{{ endblock }}
+{{ block content }}
+<div class="card">
+    <div class="card-body">
+        <p>Информация о результатах на 1 этапе случайной пары игроков</p>
+        <table class="table table-striped">
+            <colgroup>
+                <col width="40%">
+                <col width="30%">
+                <col width="30%">
+            </colgroup>
+            <tr>
+                <td align="right"></td>
+                <td><b>Участник 1</b></td>
+                <td align="left"><b>Участник 2</b></td>
+            </tr>
+            <tr>
+                <td align="right"> <b>Количество выполненных заданий</b></td>
+                <td>{{ player.other1_score }}</td>
+                <td align="left">{{ player.other2_score }}</td>
+            </tr>
+            <tr>
+                <td align="right"> <b> Сложность заданий</b> </td>
+                <td>{{ if player.other1_hard_treatment }} Сложные {{ else }} Легкие {{ endif }}</td>
+                <td align="left">{{ if player.other2_hard_treatment }} Сложные {{ else }} Легкие {{ endif }}</td>
+            </tr>
+        </table>
+
+        <div class="alert">
+            {{form.share.label}}
+                <div class="slidecontainer">
+                    <input type="range" name="share" class="slider" min="0" max="100"
+                           oninput="updateDescription2(this)" >
+                        <div class="sliderticks">
+                            <p>1</p>
+                            <p>2</p>
+                        </div>
+                </div>
+                <p id="share"></p>
+        </div>
+    </div>
+</div>
+
+    {{ next_button }}
+
+<script>
+    function num_word(value, words){
+	value = Math.abs(value) % 100;
+	var num = value % 10;
+	if(value > 10 && value < 20) return words[2];
+	if(num > 1 && num < 5) return words[1];
+	if(num == 1) return words[0];
+	return words[2];
+}
+
+    let description2 = document.getElementById('share');
+    function updateDescription2(input) {
+        let share = parseInt(input.value);
+        description2.innerText = `Я считаю, что участнику 1 должно достаться ${share} ${num_word(share, ['очко', 'очка', 'очков'])}, а участнику 2 — ${100-share} ${num_word(100-share, ['очко', 'очка', 'очков'])}.`
+    }
+</script>
+
+{{ endblock }}

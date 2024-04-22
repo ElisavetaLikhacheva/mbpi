@@ -5,12 +5,6 @@ doc = """
 Your app description
 """
 
-
-# def set_payoffs(group):
-#     winner = group.get_player_by_role('Winner')
-#     loser = group.get_player_by_role('Loser')
-#     winner.payoff = winner.inc_endowment + C.COMMON_SHARE - group.share
-#     recipient.payoff = recipient.inc_endowment + group.share
 def other_player(player):
     return player.get_others_in_group()[0]
 
@@ -35,6 +29,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
     winner_role = models.BooleanField()
 
     ret_payoff = models.CurrencyField()
@@ -108,6 +103,8 @@ class WP1(WaitPage):
             # p.hard = p.participant.other_score = other_player(p).participant.score
             p.other_hard_treatment = p.participant.other_hard_treatment = other_player(p).participant.hard_treatment
 
+            p.participant.past_group_id = group.id
+
 
 class MatchingResultsWinners(Page):
 
@@ -141,16 +138,14 @@ class DecideMPL(Page):
     @staticmethod
     def vars_for_template(player: Player):
         keys = range(1, 12)
-        values = [cu(300), cu(200), cu(100), cu(50), cu(10), cu(0), cu(0), cu(0), cu(0), cu(0), cu(0)]
-        # right_side_amounts = {keys[i]: values[i] for i in range(len(keys))}
-        # left_side_amounts = {keys[i]: values[-1-i] for i in range(len(keys))}
+        values = [cu(0), cu(0), cu(0), cu(0), cu(0), cu(0), cu(10), cu(50), cu(100), cu(150), cu(250)]
         both_side_amounts = {keys[i]: [[values[-1-i], values[i]]] for i in range(len(keys))}
         print(both_side_amounts)
         return {'both_side_amounts': both_side_amounts}
 
     def before_next_page(player: Player, timeout_happened):
         participant = player.participant
-        values = [cu(300), cu(200), cu(100), cu(50), cu(10), cu(0), cu(0), cu(0), cu(0), cu(0), cu(0)]
+        values = [cu(0), cu(0), cu(0), cu(0), cu(0), cu(0), cu(10), cu(50), cu(100), cu(150), cu(250)]
 
         # define risk aversion param to pass on to steering_app
         for i in range(1, 12):
@@ -171,12 +166,14 @@ class DecideMPL(Page):
             participant.mpl_info = player.mpl_info = 0
             participant.mpl_payoff = values[1-int(player.selected_choice[1:])]
             player.payoff = player.payoff + participant.mpl_payoff
+
             print('right', participant.mpl_payoff, player.payoff)
             participant.message = f"Случайно была выбрана строка {player.selected_choice[1:]}. В ней Вы выбрали не узнавать информацию и получить дополнительно {participant.mpl_payoff}. "
         else:
             participant.mpl_info = player.mpl_info = 1
-            participant.mpl_payoff = values[int(player.selected_choice[1:])]
+            participant.mpl_payoff = values[int(player.selected_choice[1:])-1]
             player.payoff = player.payoff + participant.mpl_payoff
+
             print('left', participant.mpl_payoff, player.payoff)
             participant.message = (f"Случайно была выбрана строка {player.selected_choice[1:]}. В ней Вы выбрали узнать информацию и получить дополнительно {participant.mpl_payoff}. ")
 
